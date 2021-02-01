@@ -5,6 +5,8 @@ import lab.lab54.entities.Subscription;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Builder(access = AccessLevel.PRIVATE)
@@ -19,6 +21,14 @@ public class SubscriptionDTO {
                 .email(subscription.getEmail())
                 .time(subscription.getTime())
                 .build();
+    }
+
+    public static List<SubscriptionDTO> list(List<Subscription> subscriptions){
+        List<SubscriptionDTO> subscriptionDTOS = new ArrayList<>();
+        for(Subscription s : subscriptions){
+            subscriptionDTOS.add(from(s));
+        }
+        return subscriptionDTOS;
     }
 
     private String id;
